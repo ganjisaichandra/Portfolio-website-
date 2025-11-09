@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-white text-gray-900 antialiased;
+}
+
+/* nicer focus rings */
+:where(a, button, input, textarea, select):focus-visible {
+  @apply outline-none ring-2 ring-blue-300 ring-offset-2 ring-offset-white;
+}
+
+/* ====== CUSTOM FONT ====== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+/* Apply Poppins to Headings only */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif !important;
+}
+
+/* ====== MAGNETIC CURSOR ====== */
+body {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.custom-cursor.magnetic {
+  transform: translate(-50%, -50%) scale(2.4);
+}
+
+/* ====== NOISE FLOW BACKGROUND ====== */
+.noise-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.noise-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+/* ===== PARALLAX BACKGROUND ===== */
+.parallax-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.25;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: transform;
+}
+
+/* Layer images / gradients */
+.layer-1 {
+  background-image: radial-gradient(
+    circle at 30% 40%,
+    #93c5fd 0%,
+    transparent 60%
+  );
+}
+
+.layer-2 {
+  background-image: radial-gradient(
+    circle at 70% 60%,
+    #bfdbfe 0%,
+    transparent 65%
+  );
+}
+
+.layer-3 {
+  background-image: radial-gradient(
+    circle at 50% 20%,
+    #dbeafe 0%,
+    transparent 70%
+  );
+}
+
+/* ===== TEXT ZOOM EFFECT ===== */
+/* ===== CUSTOM CURSOR ===== */
+body {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+  z-index: 9999;
+}
+
+/* Cursor grows with zoom items */
+.custom-cursor.zooming {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+/* ===== ELEMENT ZOOM (Headings + Cards) ===== */
+.zoom-target {
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+
+.zoom-target.zoom-active {
+  transform: scale(1.12);
+}
+
+/* ===== SPOTLIGHT EFFECT ===== */
+.spotlight-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: screen;
+}
+
+.spotlight-circle {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body.dark {
+  background: #000;
+  color: #fff;
+}
+/* ===== CURSOR TRAIL PARTICLES ===== */
+.cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: black;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  animation: trail-fade 0.6s linear forwards;
+}
+
+@keyframes trail-fade {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+}
+/* Make poster cards tall & elegant */
+.poster-card img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
