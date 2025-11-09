@@ -246,7 +246,7 @@ export function Projects() {
  average delays and improved resource utilization"
           tags={["Python", "Analytics", "Optimization", "Excel", "Dashboards"]}
           github="https://github.com/ganjisaichandra/Bus-Route-and-Timing-Optimization"
-          cover="/Projects/analytics.jpg"
+          cover="/projects/analytics.jpg"
         />
 
         <ProjectCard
@@ -267,7 +267,7 @@ export function Projects() {
             "WordCloud",
           ]}
           github="https://github.com/your-username/sentiment-analysis"
-          cover="/Projects/stream.jpg"
+          cover="/projects/stream.jpg"
         />
       </div>
     </Section>
@@ -350,13 +350,13 @@ export function Footer() {
 /** ======== DESIGN WORK — MASONRY GRID ======== */
 export function DesignWork() {
   const designs = [
-    { title: "Website Banner", image: "/Projects/Mivi.jpg" },
-    { title: "Website Banner", image: "/Projects/AD.jpg" },
-    { title: "Webiste Banner", image: "/Projects/AD-2.jpg" },
-    { title: "Creative Poster", image: "/Projects/MSC.jpg" },
-    { title: "Social Media Post", image: "/Projects/Brand.jpg" },
-    { title: "Social Media Post", image: "/Projects/SOCD.jpg" },
-    { title: "Product Mockup", image: "/Projects/SOCD2.jpg" },
+    { title: "Website Banner", image: "/projects/Mivi.jpg" },
+    { title: "Website Banner", image: "/projects/AD.jpg" },
+    { title: "Webiste Banner", image: "/projects/AD-2.jpg" },
+    { title: "Creative Poster", image: "/projects/MSC.jpg" },
+    { title: "Social Media Post", image: "/projects/Brand.jpg" },
+    { title: "Social Media Post", image: "/projects/SOCD.jpg" },
+    { title: "Product Mockup", image: "/projects/SOCD2.jpg" },
   ];
 
   return (
