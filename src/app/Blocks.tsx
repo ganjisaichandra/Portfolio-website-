@@ -6,7 +6,6 @@ import {
   Mail,
   Github,
   Linkedin,
-  ChevronRight,
   Sparkles,
   BarChart3,
 } from "lucide-react";
@@ -24,19 +23,19 @@ import {
 /** ======== NAVBAR (centered, no logo/name) ======== */
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-100">
-      <Container className="h-14 flex items-center justify-center">
+    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-100 border-b-2 border-blue-600">
+      <Container className="h-14 flex items-center justify-center ">
         <nav className="flex items-center gap-6 text-sm">
-          <a href="#about" className="hover:opacity-80">
+          <a href="#about" className="hover:opacity-80 ">
             About
           </a>
-          <a href="#skills" className="hover:opacity-80">
+          <a href="#skills" className="hover:opacity-80 ">
             Skills
           </a>
-          <a href="#projects" className="hover:opacity-80">
+          <a href="#projects" className="hover:opacity-80 ">
             Projects
           </a>
-          <a href="#contact" className="hover:opacity-80">
+          <a href="#contact" className="hover:opacity-800">
             Contact
           </a>
         </nav>
@@ -53,7 +52,7 @@ export function Hero() {
         {/* WRAPPER FIX: Remove Grid → use flex column centered */}
         <div className="flex flex-col items-center justify-center text-center mx-auto max-w-3xl">
           <InViewFadeUp>
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-blue-700 zoom-target">
+            <h1 className="text-10xl sm:text-5xl font-extrabold leading-tight text-blue-700 zoom-target">
               Building delightful UIs and data stories.
             </h1>
 
@@ -64,24 +63,25 @@ export function Hero() {
             </p>
 
             {/* Tags */}
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Chip>Design Systems</Chip>
-              <Chip>Frontend Dev</Chip>
-              <Chip>BI Dashboards</Chip>
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <Chip className="bg-orange-400 text-white px-3 py-1 text-xs font-medium">Design Systems</Chip>
+              <Chip className="bg-orange-400 text-white px-3 py-1 text-xs font-medium">Frontend Dev</Chip>
+              <Chip className="bg-orange-400 text-white px-3 py-1 text-xs font-medium">BI Dashboards</Chip>
+              <Chip className="bg-orange-400 text-white px-3 py-1 text-xs font-medium">Graphic Design</Chip>
             </div>
 
             {/* Buttons */}
             <div className="mt-5 flex justify-center gap-2">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-white shadow hover:opacity-90 zoom-target"
+                className="inline-flex items-center rounded-xl bg-blue-600 px-5 py-2.5 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-200 zoom-target"
               >
-                View Projects <ChevronRight className="h-5 w-5" />
+                View Projects
               </a>
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-5 py-2.5 hover:bg-gray-50 zoom-target"
+                className="inline-flex items-center rounded-xl border border-gray-300 px-5 py-2.5 font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 zoom-target"
               >
                 Contact
               </a>
@@ -282,7 +282,7 @@ export function Contact() {
         <TiltCard>
           <a
             href="mailto:saichandra38ganji@gmail.com"
-            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-100"
+            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-100 border-x-5 border-orange-600"
           >
             <div className="flex items-center gap-3">
               <Mail className="h-5 w-5" />
@@ -300,7 +300,7 @@ export function Contact() {
           <a
             href="https://github.com/ganjisaichandra"
             target="_blank"
-            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-50"
+            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-50 border-x-5 border-orange-600"
           >
             <div className="flex items-center gap-3">
               <Github className="h-5 w-5" />
@@ -318,7 +318,7 @@ export function Contact() {
           <a
             href="https://www.linkedin.com/in/ganji-sri-vijaya-sai-chandra/"
             target="_blank"
-            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-50"
+            className="group block rounded-2xl border border-gray-500 p-5 hover:bg-gray-50 border-b-5 border-orange-600"
           >
             <div className="flex items-center gap-3">
               <Linkedin className="h-5 w-5" />
@@ -370,7 +370,7 @@ export function DesignWork() {
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-5 space-y-5">
         {designs.map((item, index) => (
           <TiltCard key={index} className="card-zoom inline-block w-full">
-            <div className="overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-100 shadow-sm hover:shadow-lg transition-all duration-300">
+            <div className="overflow-hidden rounded-2xl border-5 border-x-20 border-grey-900 dark:border-orange-700 bg-white dark:bg-neutral-100 shadow-sm hover:shadow-lg transition-all duration-200">
               <img
                 src={item.image}
                 alt={item.title}
