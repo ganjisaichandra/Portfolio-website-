@@ -36,19 +36,19 @@ export function Section({
   className?: string;
 }>) {
   return (
-    <section id={id} className={cn("py-12 sm:py-16", className)}>
+    <section id={id} className={cn("py-16 sm:py-24", className)}>
       <Container>
         {eyebrow ? (
-          <div className="mb-2 text-xs font-semibold tracking-widest uppercase text-blue-600">
+          <div className="mb-3 text-xs font-semibold tracking-wider uppercase text-gray-500">
             {eyebrow}
           </div>
         ) : null}
         {title ? (
-          <h2 className="text-3xl sm:text-4xl font-bold text-blue-700">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-12">
             {title}
           </h2>
         ) : null}
-        <div className="mt-5">{children}</div>
+        <div>{children}</div>
       </Container>
     </section>
   );
@@ -61,7 +61,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl bg-white shadow-sm border border-gray-200",
+        "rounded-xl bg-white shadow-sm border border-gray-200/80",
         className
       )}
     >
