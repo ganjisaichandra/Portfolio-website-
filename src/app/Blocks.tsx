@@ -11,6 +11,11 @@ import {
   ArrowRight,
   Menu,
   X,
+  Trophy,
+  Zap,
+  Award,
+  Link,
+  GraduationCap,
 } from "lucide-react";
 import {
   Card,
@@ -24,6 +29,16 @@ import {
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
+    { label: "Skills", href: "#skills" },
+    { label: "Coding Profile", href: "#profiles" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,26 +67,30 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200/50">
-      <Container className="h-16 flex items-center justify-between">
-        <div className="text-lg font-semibold text-gray-900">Sai Chandra</div>
-        
+      <Container className="h-16 flex items-center justify-between md:justify-center">
+        {/* Mobile Profile Icon */}
+        <div className="flex items-center md:hidden">
+          <img
+            src="/projects/Profile.jpg"
+            alt="Sai Chandra"
+            className="h-8 w-8 rounded-full border border-gray-200 object-cover"
+          />
+        </div>
+
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <a href="#about" className="hover:text-gray-900 transition-colors">
-            About
-          </a>
-          <a href="#skills" className="hover:text-gray-900 transition-colors">
-            Skills
-          </a>
-          <a href="#projects" className="hover:text-gray-900 transition-colors">
-            Projects
-          </a>
-          <a href="#experience" className="hover:text-gray-900 transition-colors">
-            Experience
-          </a>
-          <a href="#contact" className="hover:text-gray-900 transition-colors">
-            Contact
-          </a>
+        <nav className="hidden md:flex items-center justify-center">
+          <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -92,42 +111,17 @@ export function Navbar() {
       {isMenuOpen && (
         <div ref={menuRef} className="md:hidden border-t border-gray-200 bg-white">
           <Container>
-            <nav className="flex flex-col py-4 space-y-4">
-              <a
-                href="#about"
-                onClick={closeMenu}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
-              >
-                About
-              </a>
-              <a
-                href="#skills"
-                onClick={closeMenu}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
-              >
-                Skills
-              </a>
-              <a
-                href="#projects"
-                onClick={closeMenu}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
-              >
-                Projects
-              </a>
-              <a
-                href="#experience"
-                onClick={closeMenu}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
-              >
-                Experience
-              </a>
-              <a
-                href="#contact"
-                onClick={closeMenu}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
-              >
-                Contact
-              </a>
+            <nav className="flex flex-col py-4 space-y-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-teal-500 hover:bg-gray-50 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
             </nav>
           </Container>
         </div>
@@ -164,7 +158,7 @@ export function Hero() {
                     <img
                       src="/projects/Profile.jpg"
                       alt="Sai Chandra"
-                      className="h-full w-full object-cover grayscale"
+                      className="h-full w-full object-cover sepia"
                       loading="eager"
                     />
                   </div>
@@ -202,7 +196,7 @@ export function Hero() {
                 </a>
                 <a
                   href="#contact"
-                  className="gap-2 inline-flex justify-center rounded-full text-sm font-semibold ring-1 text-gray-950 ring-gray-950/10 hover:ring-gray-950/20 px-4 py-2 transition-colors"
+                  className="gap-2 inline-flex justify-center rounded-full text-sm font-semibold ring-1 text-gray-950 ring-gray-950/10 hover:ring-gray-950/20 px-4 py-2 transition-colors p-6 bg-white border border-gray-200/80 shadow-sm duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.2"
                 >
                   Contact
                   <svg
@@ -249,7 +243,7 @@ export function About() {
                   I'm a Mechanical Engineering student who loves turning ideas into
                   clean, responsive interfaces and meaningful data visuals. I work
                   across design <span className="underline decoration-red-800/30">(Figma)</span>, frontend <span className="underline decoration-red-800/30">(React, Tailwind)</span>, and analytics
-                  (Python, SQL, Power BI) to build products that feel fast and tell
+                  <span className="underline decoration-red-800/30">(Python, SQL, Power BI)</span> to build products that feel fast and tell
                   a story.
                 </p>
               </InViewFadeUp>
@@ -268,6 +262,88 @@ export function About() {
                   </div>
                 </div>
               </InViewFadeUp>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** ======== EDUCATION (Grid-Based Style) ======== */
+export function Education() {
+  const education = [
+    {
+      degree: "Bachelor of Technology in Mechanical Engineering",
+      institution: "NIT Andhra Pradesh",
+      period: "2026",
+      description: "Focused on engineering principles, design systems, and data analysis. Relevant coursework includes CAD/CAM, Thermodynamics, and Engineering Mathematics.",
+      highlights: ["Project Excellence Award",],
+    },
+  ];
+
+  return (
+    <section id="education" className="py-16 sm:py-24 bg-white">
+      <Container>
+        <div className="mt-12 grid gap-x-10 sm:mt-20 lg:mt-24 lg:grid-cols-[2fr_3fr]">
+          {/* Left Column - Title */}
+          <div className="px-4 py-2 max-lg:line-b sm:px-2 gradient-border-r">
+            <InViewFadeUp>
+              <p className="font-mono text-[0.8125rem] font-medium tracking-widest uppercase text-gray-600">
+                Education
+              </p>
+              <h2 className="mt-2 text-5xl tracking-tighter sm:text-6xl lg:text-7xl text-pretty font-bold text-gray-900">
+                Academic background
+              </h2>
+            </InViewFadeUp>
+          </div>
+
+          {/* Right Column - Education Cards */}
+          <div className="px-4 py-2 max-lg:mt-6 sm:px-2 gradient-border-l">
+            <div className="space-y-6">
+              {education.map((edu, index) => (
+                <InViewFadeUp key={index} delay={index * 0.1}>
+                  <div className="p-6 bg-white rounded-lg border border-gray-200/80 shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="h-12 w-12 rounded-lg bg-gray-900 text-white grid place-items-center">
+                          <GraduationCap className="h-6 w-6" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900">
+                              {edu.degree}
+                            </h3>
+                            <p className="text-sm font-medium text-gray-600 mt-1">
+                              {edu.institution}
+                            </p>
+                          </div>
+                          <span className="text-sm text-gray-500 font-medium">
+                            {edu.period}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                          {edu.description}
+                        </p>
+                        {edu.highlights && edu.highlights.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {edu.highlights.map((highlight) => (
+                              <span
+                                key={highlight}
+                                className="inline-flex items-center rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-700"
+                              >
+                                {highlight}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </InViewFadeUp>
+              ))}
             </div>
           </div>
         </div>
@@ -298,7 +374,12 @@ export function Skills() {
       label: "Data / BI",
       items: ["Power BI", "SQL", "Python", "Pandas", "Tableau"],
     },
-    { label: "Tools", items: ["GitHub", "Vercel", "Colab", "VS Code"] },
+    { label: "Tools", items: ["GitHub", "Vercel", "Colab", "VS Code"]
+     },
+     {
+      label: "Artificial Intelligence",
+      items: ["Hugging Face", "OpenAI", "Google AI", "Claude", "Gemini", "Machine Learning", "NLP", "Streamlit"],
+     }
   ];
   return (
     <section id="skills" className="py-16 sm:py-24 bg-gray">
@@ -321,7 +402,7 @@ export function Skills() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {groups.map((g, idx) => (
                 <InViewFadeUp key={g.label} delay={idx * 0.1}>
-                  <div className="p-5 bg-white rounded-lg border border-gray-200/80 shadow-sm hover:border-gray-300 transition-colors">
+                  <div className="p-5 bg-white rounded-lg border border-gray-200/80 shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.5">
                     <div className="mb-3 text-sm font-semibold text-gray-900">{g.label}</div>
                     <div className="flex flex-wrap gap-2">
                       {g.items.map((item) => (
@@ -336,6 +417,98 @@ export function Skills() {
                   </div>
                 </InViewFadeUp>
               ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** ======== CODING PROFILES ======== */
+type Profile = {
+  platform: string;
+  handle: string;
+  link: string;
+  highlight: string;
+  badges: string[];
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};
+
+export function CodingProfiles() {
+  const profiles: Profile[] = [
+    {
+      platform: "HackerRank",
+      handle: "SaiChandra",
+      link: "https://www.hackerrank.com/profile/saichandra38gan1",
+      highlight: "Problem Solving",
+      badges: ["Python", "SQL"],
+      icon: Trophy,
+    },
+  ];
+
+  return (
+    <section id="profiles" className="py-16 sm:py-24 bg-white">
+      <Container>
+        <div className="mt-12 grid gap-x-10 sm:mt-20 lg:mt-24 lg:grid-cols-[2fr_3fr]">
+          {/* Left Column - Title */}
+          <div className="px-4 py-2 max-lg:line-b sm:px-2 gradient-border-r">
+            <InViewFadeUp>
+              <p className="font-mono text-[0.8125rem] font-medium tracking-widest uppercase text-gray-600">
+                Coding Profiles
+              </p>
+              <h2 className="mt-2 text-5xl tracking-tighter sm:text-6xl lg:text-7xl text-pretty font-bold text-gray-900">
+                Proof of practice
+              </h2>
+              <p className="mt-6 text-lg leading-7 text-gray-600 max-w-md">
+                Consistent competitive programming practice on HackerRank to keep my
+                fundamentals sharp.
+              </p>
+            </InViewFadeUp>
+          </div>
+
+          {/* Right Column - Profile Cards */}
+          <div className="px-4 py-2 max-lg:mt-6 sm:px-2 gradient-border-l">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {profiles.map((profile) => {
+                const Icon = profile.icon;
+                return (
+                  <InViewFadeUp key={profile.platform}>
+                    <a
+                      href={profile.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex h-full flex-col rounded-xl border border-gray-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="rounded-lg bg-gray-100 p-2 text-gray-700 group-hover:bg-gray-200 transition-colors">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div className="text-sm font-semibold text-gray-900">
+                            {profile.platform}
+                          </div>
+                        </div>
+                        <Zap className="h-4 w-4 text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="mt-3 text-2xl font-bold text-gray-900">
+                        {profile.handle}
+                      </div>
+                      <p className="mt-2 text-sm text-gray-600">{profile.highlight}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {profile.badges.map((badge) => (
+                          <span
+                            key={badge}
+                            className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
+                          >
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+                    </a>
+                  </InViewFadeUp>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -418,7 +591,7 @@ export function Projects() {
             <div className="space-y-6">
               <ProjectCard
                 title="Bus Route & Timing Optimization"
-                summary="Analyzed 100+ records of bus operations to identify inefficiencies in route scheduling and passenger distribution. Built an interactive Excel dashboard with pivot tables and charts to visualize delays, crowding trends, and on-time performance. Applied rule-based AI recommendations to optimize bus timings and routes, achieving 20–30% reduction in average delays and improved resource utilization."
+                summary="Analyzed 100+ bus operation records to identify route and passenger-flow inefficiencies, visualizing delays and crowding through an interactive Excel dashboard. Applied rule-based AI recommendations to optimize scheduling, reducing delays by 20–30% and improving resource utilization."
                 tags={["Python", "Analytics", "Optimization", "Excel", "Dashboards"]}
                 github="https://github.com/ganjisaichandra/Bus-Route-and-Timing-Optimization"
                 cover="/projects/analytics.jpg"
@@ -426,7 +599,7 @@ export function Projects() {
 
               <ProjectCard
                 title="Product Reviews Sentiment Analysis"
-                summary="Developed an AI-powered web application using Python, Streamlit, and Hugging Face Transformers to classify product reviews from platforms like Amazon and Flipkart into Positive, Negative, or Neutral sentiments. Implemented features such as sentiment distribution charts, word clouds for positive/negative reviews, and single/bulk CSV review analysis, enhancing user experience and data visualization using Matplotlib, Seaborn, and Pandas."
+                summary="Developed an AI-powered sentiment analysis web app using Python, Streamlit, and Transformers to classify Amazon/Flipkart reviews as Positive, Negative, or Neutral. Added charts, word clouds, and bulk CSV analysis with Matplotlib, Seaborn, and Pandas for enhanced insights and user experience."
                 tags={[
                   "Python",
                   "NLP",
@@ -481,7 +654,7 @@ export function Experience() {
             <div className="space-y-6">
               {experiences.map((exp, index) => (
                 <InViewFadeUp key={index} delay={index * 0.1}>
-                  <div className="p-6 bg-white rounded-lg border border-gray-200/80 shadow-sm hover:border-gray-300 transition-colors">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200/80 shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.5">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
                         <div className="h-12 w-12 rounded-lg bg-gray-900 text-white grid place-items-center">
@@ -518,6 +691,91 @@ export function Experience() {
                           </div>
                         )}
                       </div>
+                    </div>
+                  </div>
+                </InViewFadeUp>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** ======== CERTIFICATIONS ======== */
+export function Certifications() {
+  const certifications = [
+    {
+      title: "Google Data Analytics Professional Certificate",
+      issuer: "Coursera · Google",
+      year: "2025",
+      details: "Data cleaning, visualization, and dashboards with real-world case studies.",
+    },
+    {
+      title: "Deloitte Australia - Data Analytics Job Simulation",
+      issuer: "Forage",
+      year: "2025",
+      details: " Excel, End-to-end BI workflows: data modeling, DAX, and interactive reports.",
+    },
+    {
+      title: "Machine Learning for Data Science using Python",
+      issuer: "NIT Warangal",
+      year: "2023",
+      details: "Data cleaning, visualization, and machine learning with real-world case studies.",
+    },
+    {
+      title: "Build a Full Website usingn WordPress",
+      issuer: "Coursera",
+      year: "2023",
+      details: "Modern HTML, CSS, and WordPress development",
+    }
+  ];
+
+  return (
+    <section id="certifications" className="py-16 sm:py-24 bg-gray-50">
+      <Container>
+        <div className="mt-12 grid gap-x-10 sm:mt-20 lg:mt-24 lg:grid-cols-[2fr_3fr]">
+          {/* Left Column - Title */}
+          <div className="px-4 py-2 max-lg:line-b sm:px-2 gradient-border-r">
+            <InViewFadeUp>
+              <p className="font-mono text-[0.8125rem] font-medium tracking-widest uppercase text-gray-600">
+                Certifications
+              </p>
+              <h2 className="mt-2 text-5xl tracking-tighter sm:text-6xl lg:text-7xl text-pretty font-bold text-gray-900">
+                Verified skills
+              </h2>
+              <p className="mt-6 text-lg leading-7 text-gray-600 max-w-md">
+                A snapshot of courses and credentials that back up my skills in data,
+                analytics, and frontend development.
+              </p>
+            </InViewFadeUp>
+          </div>
+
+          {/* Right Column - List */}
+          <div className="px-4 py-2 max-lg:mt-6 sm:px-2 gradient-border-l">
+            <div className="space-y-4">
+              {certifications.map((cert, idx) => (
+                <InViewFadeUp key={cert.title} delay={idx * 0.08}>
+                  <div className="flex gap-4 rounded-xl border border-gray-200/80 bg-white p-4 shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.3">
+                    <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-900 text-white">
+                      <Award className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                        <h3 className="text-sm font-semibold text-gray-900">
+                          {cert.title}
+                        </h3>
+                        <span className="text-xs font-medium text-gray-500">
+                          {cert.year}
+                        </span>
+                      </div>
+                      <div className="text-xs font-medium text-gray-600">
+                        {cert.issuer}
+                      </div>
+                      <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                        {cert.details}
+                      </p>
                     </div>
                   </div>
                 </InViewFadeUp>
@@ -626,7 +884,7 @@ export function Contact() {
                 <InViewFadeUp delay={0.1}>
                   <a
                     href="mailto:saichandra38ganji@gmail.com"
-                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm hover:border-gray-300 hover:shadow-md hover:bg-gray-50 transition-all duration-200"
+                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-0.5"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors">
@@ -645,7 +903,7 @@ export function Contact() {
                     href="https://github.com/ganjisaichandra"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm hover:border-gray-300 hover:shadow-md hover:bg-gray-50 transition-all duration-200"
+                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-0.5"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors">
@@ -664,7 +922,7 @@ export function Contact() {
                     href="https://www.linkedin.com/in/ganji-sri-vijaya-sai-chandra/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm hover:border-gray-300 hover:shadow-md hover:bg-gray-50 transition-all duration-200"
+                    className="group flex flex-col p-6 rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-500 hover:shadow-lg hover:bg-gray-50 hover:-translate-y-0.5"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors">
@@ -708,9 +966,12 @@ export default function Portfolio() {
       <Navbar />
       <Hero />
       <About />
+      <Education />
       <Skills />
+      <CodingProfiles />
       <Projects />
       <Experience />
+      <Certifications />
       <DesignWork />
       <Contact />
       <Footer />

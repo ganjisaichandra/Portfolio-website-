@@ -3,6 +3,7 @@ import ParallaxBackground from "./ParallaxBackground";
 import CustomCursor from "./CustomCursor";
 import { LiquidEffectAnimation } from "./LiquidEffectAnimation";
 import { SphereEffect } from "./SphereEffect";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Sai Chandra — Portfolio",
@@ -24,6 +25,7 @@ export default function RootLayout({
         {/* <ParallaxBackground /> */}
         <CustomCursor />
         {children}
+        <Analytics />
       </body>
     </html>
   );
