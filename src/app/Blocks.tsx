@@ -820,12 +820,24 @@ export function DesignWork() {
             </InViewFadeUp>
           </div>
 
-          {/* Right Column - Design Grid */}
-          <div className="px-4 py-2 max-lg:mt-6 sm:px-2 lg:border-l lg:border-gray-200">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {designs.map((item, index) => (
-                <DesignTile key={index} item={item} index={index} />
-              ))}
+          {/* Right Column - Vertical Autoscroll Carousel */}
+          <div className="px-4 py-2 max-lg:mt-6 sm:px-2 gradient-border-l">
+            <div className="relative h-[600px] sm:h-[700px] overflow-hidden rounded-lg">
+              {/* Fade gradients at top and bottom */}
+              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-gray-50 to-transparent z-10 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none" />
+              
+              {/* Scrolling container */}
+              <div className="animate-scroll-vertical space-y-4">
+                {/* First set of items */}
+                {designs.map((item, index) => (
+                  <DesignTile key={`first-${index}`} item={item} index={index} />
+                ))}
+                {/* Duplicate set for seamless loop */}
+                {designs.map((item, index) => (
+                  <DesignTile key={`second-${index}`} item={item} index={index} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -841,21 +853,19 @@ type DesignItem = {
 
 function DesignTile({ item, index }: { item: DesignItem; index: number }) {
   return (
-    <InViewFadeUp delay={index * 0.1}>
-      <div className="overflow-hidden rounded-lg border border-gray-200/80 bg-white shadow-sm group hover:border-gray-300 hover:shadow-md transition-all">
-        <div className="w-full overflow-hidden bg-gray-100">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-          />
-        </div>
-        <div className="p-3 border-t border-gray-200/80">
-          <p className="text-xs font-medium text-gray-700 uppercase tracking-wide">{item.title}</p>
-        </div>
+    <div className="overflow-hidden rounded-lg border border-gray-200/80 bg-white shadow-sm group hover:border-teal-500 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+      <div className="w-full overflow-hidden bg-gray-100 p-2">
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-full max-w-[90%] mx-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
       </div>
-    </InViewFadeUp>
+      <div className="p-3 border-t border-gray-200/80">
+        <p className="text-xs font-medium text-gray-700 uppercase tracking-wide">{item.title}</p>
+      </div>
+    </div>
   );
 }
 
