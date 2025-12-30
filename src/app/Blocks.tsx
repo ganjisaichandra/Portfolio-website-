@@ -610,7 +610,7 @@ export function Projects() {
                   "streamlit",
                   "WordCloud",
                 ]}
-                github="https://github.com/your-username/sentiment-analysis"
+                github="https://ganjisaichandra-ai-product-review-sentiment-analyzer-app-qux1kx.streamlit.app/"
                 cover="/projects/stream.jpg"
               />
             </div>
