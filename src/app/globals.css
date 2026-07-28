@@ -4,25 +4,31 @@
 
 :root {
   --grid-line-color: rgb(229 231 235); /* gray-200 */
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --grid-line-color: rgb(55 65 81); /* gray-700 */
-  }
+html.dark {
+  --grid-line-color: rgb(63 63 70); /* zinc-700 */
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
 body {
-  @apply bg-white text-gray-900 antialiased;
+  @apply bg-transparent text-gray-900 antialiased transition-colors duration-300;
   font-feature-settings: "rlig" 1, "calt" 1;
+  cursor: none;
+}
+
+html.dark body {
+  @apply text-zinc-100;
 }
 
 /* nicer focus rings */
 :where(a, button, input, textarea, select):focus-visible {
-  @apply outline-none ring-2 ring-blue-300 ring-offset-2 ring-offset-white;
+  @apply outline-none ring-2 ring-teal-400/60 ring-offset-2 ring-offset-white dark:ring-teal-500/50 dark:ring-offset-zinc-950;
 }
 
 /* ====== CUSTOM FONT ====== */
@@ -36,10 +42,6 @@ h4,
 h5,
 h6 {
   font-family: "Poppins", sans-serif !important;
-}
-
-body {
-  cursor: none;
 }
 
 .cursor-core,
@@ -81,6 +83,27 @@ body {
   transform: translate(-50%, -50%) scale(1.25);
   border-color: rgba(99, 102, 241, 0.9);
   opacity: 1;
+}
+
+html.dark .cursor-core {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.45);
+}
+
+html.dark .cursor-outline {
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+html.dark .cursor-core.zooming {
+  box-shadow: 0 0 25px rgba(45, 212, 191, 0.7);
+}
+
+html.dark .cursor-outline.zooming {
+  border-color: rgba(45, 212, 191, 0.9);
+}
+
+html.dark .cursor-trail {
+  background: rgba(45, 212, 191, 0.35);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.35);
 }
 
 /* ====== NOISE FLOW BACKGROUND ====== */
@@ -195,14 +218,23 @@ body {
   mix-blend-mode: screen;
   z-index: 0;
 }
-html.dark {
-  color-scheme: dark;
+
+/* ====== SURFACE UTILITIES ====== */
+@layer components {
+  .surface-card {
+    @apply rounded-2xl border border-gray-200/80 bg-white/90 shadow-sm backdrop-blur-sm
+      dark:border-zinc-700/60 dark:bg-zinc-900/75;
+  }
+
+  .surface-section {
+    @apply bg-white/40 backdrop-blur-sm dark:bg-zinc-950/40;
+  }
+
+  .surface-section-alt {
+    @apply bg-white/70 backdrop-blur-sm dark:bg-zinc-900/55;
+  }
 }
 
-body.dark {
-  background: #000;
-  color: #fff;
-}
 /* ===== CURSOR TRAIL PARTICLES ===== */
 .cursor-trail {
   position: fixed;
@@ -231,30 +263,31 @@ body.dark {
 /* Make poster cards tall & elegant */
 .poster-card img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 1rem;
   object-fit: cover;
 }
 
 /* ====== GRID LINE SYSTEM (Tailwind Plus Style) ====== */
 .line-y {
-  @apply border-b border-gray-200;
+  border-bottom: 1px solid var(--grid-line-color);
 }
 
 .line-x {
-  @apply border-r border-gray-200;
+  border-right: 1px solid var(--grid-line-color);
 }
 
 .line-t {
-  @apply border-t border-gray-200;
+  border-top: 1px solid var(--grid-line-color);
 }
 
 .line-b {
-  @apply border-b border-gray-200;
+  border-bottom: 1px solid var(--grid-line-color);
 }
 
 @media (min-width: 1024px) {
   .line-y {
-    @apply border-b-0 border-r border-gray-200;
+    border-bottom: 0;
+    border-right: 1px solid var(--grid-line-color);
   }
 }
 
@@ -273,8 +306,8 @@ body.dark {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(59, 130, 246, 0.6) 20%,
-    rgba(168, 85, 247, 0.6) 50%,
+    rgba(20, 184, 166, 0.45) 20%,
+    rgba(249, 115, 22, 0.4) 50%,
     rgba(59, 130, 246, 0.6) 80%,
     transparent 100%
   );
@@ -359,6 +392,28 @@ body.dark {
 
 .animate-scroll-vertical {
   animation: scroll-vertical 30s linear infinite;
+}
+
+
+.chip {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium
+    bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200/80
+    dark:bg-zinc-800 dark:text-zinc-100 dark:ring-zinc-600/70;
+}
+.chip-teal {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium
+    bg-teal-100 text-teal-800 ring-1 ring-inset ring-teal-200/90
+    dark:bg-teal-950 dark:text-teal-200 dark:ring-teal-600/50;
+}
+.chip-orange {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium
+    bg-orange-100 text-orange-800 ring-1 ring-inset ring-orange-200/90
+    dark:bg-orange-950 dark:text-orange-200 dark:ring-orange-600/50;
+}
+.chip-outline {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium
+    border-gray-200/80 bg-gray-50/90 text-gray-800
+    dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100;
 }
 
 .animate-scroll-vertical:hover {

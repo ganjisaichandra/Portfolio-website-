@@ -39,12 +39,12 @@ export function Section({
     <section id={id} className={cn("py-16 sm:py-24", className)}>
       <Container>
         {eyebrow ? (
-          <div className="mb-3 text-xs font-semibold tracking-wider uppercase text-gray-500">
+          <div className="mb-3 text-xs font-semibold tracking-wider uppercase text-gray-500 dark:text-gray-400">
             {eyebrow}
           </div>
         ) : null}
         {title ? (
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50 mb-12">
             {title}
           </h2>
         ) : null}
@@ -61,7 +61,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl bg-white shadow-sm border border-gray-200/80",
+        "rounded-2xl bg-white shadow-sm border border-gray-200/80 dark:bg-zinc-900/60 dark:border-zinc-700/60 dark:shadow-black/20",
         className
       )}
     >
@@ -77,7 +77,7 @@ export function Chip({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full bg-gray-100 text-gray-700 px-3 py-1 text-xs font-medium",
+        "chip",
         className
       )}
     >

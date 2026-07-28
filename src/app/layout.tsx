@@ -1,13 +1,13 @@
 import "./globals.css";
-import ParallaxBackground from "./ParallaxBackground";
-import CustomCursor from "./CustomCursor";
-import { LiquidEffectAnimation } from "./LiquidEffectAnimation";
-import { SphereEffect } from "./SphereEffect";
 import { Analytics } from "@vercel/analytics/react";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { ClientProviders } from "@/components/ClientProviders";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata = {
   title: "Sai Chandra — Portfolio",
-
   description: "Frontend + Design + Power BI dashboards",
 };
 
@@ -17,15 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        {/* Background effects disabled for cleaner Tailwind Plus aesthetic */}
-        {/* <SphereEffect /> */}
-        {/* <LiquidEffectAnimation /> */}
-        {/* <ParallaxBackground /> */}
-        <CustomCursor />
-        {children}
-        <Analytics />
+    <html lang="en" className={cn("font-sans", inter.variable)} suppressHydrationWarning>
+      <body className="min-h-screen bg-transparent antialiased" suppressHydrationWarning>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
